@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json.Linq;
-using WLED_SDK.Core.Models.WledState;
+﻿using DevPieter.WLED_SDK.Core.Models.WledState;
+using Newtonsoft.Json.Linq;
 
-namespace WLED_SDK.Core.Utils;
+namespace DevPieter.WLED_SDK.Core.Utils;
 
 public static class SegmentUtils
 {

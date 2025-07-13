@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 
-namespace WLED_SDK.Builders;
+namespace DevPieter.WLED_SDK.Builders;
 
 public class PresetBuilder
 {

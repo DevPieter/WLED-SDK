@@ -1,15 +1,9 @@
-﻿using WLED_SDK.Core.Models.WledState;
+﻿using DevPieter.WLED_SDK.Core.Models.WledState;
 
-namespace WLED_SDK.Core.WledEventArgs;
+namespace DevPieter.WLED_SDK.Core.WledEventArgs;
 
-public class StateChangedEventArgs : EventArgs
+public class StateChangedEventArgs(State? previousState, State? state) : EventArgs
 {
-    public readonly State? PreviousState;
-    public readonly State? State;
-
-    public StateChangedEventArgs(State? previousState, State? state)
-    {
-        PreviousState = previousState;
-        State = state;
-    }
+    public readonly State? PreviousState = previousState;
+    public readonly State? State = state;
 }

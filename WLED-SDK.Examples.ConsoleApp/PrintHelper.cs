@@ -1,4 +1,4 @@
-﻿using WLED_SDK.Core.Models.WledState;
+﻿using DevPieter.WLED_SDK.Core.Models.WledState;
 
 namespace WLED_SDK.Examples.ConsoleApp;
 

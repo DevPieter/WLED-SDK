@@ -1,10 +1,10 @@
 ﻿using System.Text;
 using System.Text.Json;
+using DevPieter.WLED_SDK.Discoverer.DiscovererEventArgs;
 using Microsoft.Extensions.Logging;
 using Tmds.MDns;
-using WLED_SDK.Discoverer.DiscovererEventArgs;
 
-namespace WLED_SDK.Discoverer;
+namespace DevPieter.WLED_SDK.Discoverer;
 
 public class WledDeviceDiscoverer : IDisposable
 {

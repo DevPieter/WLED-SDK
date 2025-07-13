@@ -5,6 +5,16 @@ An unofficial .NET Wrapper for the [WLED](https://kno.wled.ge/) [JSON API](https
 > [!IMPORTANT]
 > This library is not officially supported or affiliated with WLED or its creator. For official information and support, please refer to the [WLED website](https://kno.wled.ge/) or the [GitHub repository](https://github.com/Aircoookie/WLED) maintained by the original developers.
 
+![Build Status](https://img.shields.io/github/actions/workflow/status/DevPieter/WLED-SDK/nuget-publish.yml?branch=main&label=Build%20Status&logo=github)
+![License](https://img.shields.io/github/license/DevPieter/WLED-SDK?color=blue&label=License&logo=github)
+![DotNet](https://img.shields.io/badge/.NET-9.0-blue?logo=.net&logoColor=white)
+
+- [Features](#features)
+- [Compatibility](#compatibility)
+- [Installation](#installation)
+- [Example Usage](#example-usage)
+- [License](#license)
+
 ## Features
 
 1. **Realtime Communication**: Send and receive data from WLED devices in real-time using WebSockets.
@@ -13,7 +23,7 @@ An unofficial .NET Wrapper for the [WLED](https://kno.wled.ge/) [JSON API](https
 
 ## Compatibility
 
-This library is compatible with [WLED v0.14.x](https://github.com/Aircoookie/WLED/releases/tag/v0.14.0) and later.
+This library is compatible with [WLED v0.15.x](https://github.com/Aircoookie/WLED/releases/tag/v0.15.0) and later.
 
 ## Installation
 

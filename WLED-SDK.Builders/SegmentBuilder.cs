@@ -1,31 +1,25 @@
 ﻿using System.Drawing;
+using DevPieter.WLED_SDK.Core;
+using DevPieter.WLED_SDK.Core.Extensions;
+using DevPieter.WLED_SDK.Core.Models.WledState;
+using DevPieter.WLED_SDK.Extensions.State;
 using Newtonsoft.Json.Linq;
-using WLED_SDK.Core;
-using WLED_SDK.Core.Extensions;
-using WLED_SDK.Core.Models.WledState;
-using WLED_SDK.Extensions.State;
 
-namespace WLED_SDK.Builders;
+namespace DevPieter.WLED_SDK.Builders;
 
-public class SegmentBuilder
+public class SegmentBuilder(IWledClient client)
 {
-    private readonly IWledClient _client;
-    private readonly List<JObject> _segments = new();
+    private readonly List<JObject> _segments = [];
 
     /// <summary>
     /// The segments that have been added to the builder.
     /// </summary>
     public IReadOnlyList<JObject> Segments => _segments.AsReadOnly();
 
-    public SegmentBuilder(IWledClient client)
-    {
-        _client = client;
-    }
-
     /// <remarks>Requires <see cref="IWledClient"/> to be provided.</remarks>
     public SegmentBuilder AddSegment(int start, int stop, string? name = null, int? id = null)
     {
-        var info = _client.GetInfoOrThrow();
+        var info = client.GetInfoOrThrow();
         var ledCount = info.LedInfo.Count;
         var segmentCount = info.LedInfo.MaxSegments;
 
@@ -118,7 +112,7 @@ public class SegmentBuilder
     /// <inheritdoc cref="Segment.EffectId"/>
     public SegmentBuilder Effect(int effectId)
     {
-        GetLastSegmentOrThrow()["fx"] = _client.ClampEffectId(effectId);
+        GetLastSegmentOrThrow()["fx"] = client.ClampEffectId(effectId);
         return this;
     }
 
@@ -182,7 +176,7 @@ public class SegmentBuilder
     /// <inheritdoc cref="Segment.PaletteId"/>
     public SegmentBuilder Palette(int paletteId)
     {
-        GetLastSegmentOrThrow()["pal"] = _client.ClampPaletteId(paletteId);
+        GetLastSegmentOrThrow()["pal"] = client.ClampPaletteId(paletteId);
         return this;
     }
 

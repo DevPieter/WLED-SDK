@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace WLED_SDK.Core.Extensions;
+namespace DevPieter.WLED_SDK.Core.Extensions;
 
 public static class ColorExtensions
 {

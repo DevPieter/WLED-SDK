@@ -1,15 +1,9 @@
-﻿using WLED_SDK.Core.Models.WledInfo;
+﻿using DevPieter.WLED_SDK.Core.Models.WledInfo;
 
-namespace WLED_SDK.Core.WledEventArgs;
+namespace DevPieter.WLED_SDK.Core.WledEventArgs;
 
-public class InfoChangedEventArgs : EventArgs
+public class InfoChangedEventArgs(Info? previousInfo, Info? info) : EventArgs
 {
-    public readonly Info? PreviousInfo;
-    public readonly Info? Info;
-
-    public InfoChangedEventArgs(Info? previousInfo, Info? info)
-    {
-        PreviousInfo = previousInfo;
-        Info = info;
-    }
+    public readonly Info? PreviousInfo = previousInfo;
+    public readonly Info? Info = info;
 }

@@ -7,10 +7,9 @@
 
 /* ====== Console Settings (IGNORE) ====== */
 
-using WLED_SDK.Client.WebSocket;
-using WLED_SDK.Core;
-using WLED_SDK.Discoverer;
-using WLED_SDK.Extensions.State;
+using DevPieter.WLED_SDK.Client.WebSocket;
+using DevPieter.WLED_SDK.Discoverer;
+using DevPieter.WLED_SDK.Extensions.State;
 
 Console.Clear();
 Console.Title = "WLED SDK - Discoverer Example";

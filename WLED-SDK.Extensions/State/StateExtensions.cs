@@ -1,8 +1,8 @@
-﻿using WLED_SDK.Core;
-using WLED_SDK.Core.Extensions;
-using WLED_SDK.Core.Utils;
+﻿using DevPieter.WLED_SDK.Core;
+using DevPieter.WLED_SDK.Core.Extensions;
+using DevPieter.WLED_SDK.Core.Utils;
 
-namespace WLED_SDK.Extensions.State;
+namespace DevPieter.WLED_SDK.Extensions.State;
 
 public static class StateExtensions
 {

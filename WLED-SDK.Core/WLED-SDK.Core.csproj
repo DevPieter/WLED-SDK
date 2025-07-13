@@ -1,14 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
-        <RootNamespace>WLED_SDK.Core</RootNamespace>
+        <TargetFramework>net9.0</TargetFramework>
+        <RootNamespace>DevPieter.WLED_SDK.Core</RootNamespace>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <Authors>DevPieter</Authors>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <AssemblyVersion>1.0.0</AssemblyVersion>
-        <FileVersion>1.0.0</FileVersion>
+        <AssemblyVersion>1.0.1</AssemblyVersion>
+        <FileVersion>1.0.1</FileVersion>
+        <LangVersion>14</LangVersion>
+        <AssemblyName>DevPieter.WLED-SDK.Core</AssemblyName>
+        <Version>1.0.1</Version>
+        <Title>WLED-SDK</Title>
+        <PackageProjectUrl>https://github.com/DevPieter/WLED-SDK</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/DevPieter/WLED-SDK</RepositoryUrl>
     </PropertyGroup>
 
     <ItemGroup>

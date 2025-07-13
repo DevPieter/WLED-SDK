@@ -1,9 +1,9 @@
 ﻿using System.Text;
+using DevPieter.WLED_SDK.Core;
+using DevPieter.WLED_SDK.Core.Extensions;
 using Newtonsoft.Json;
-using WLED_SDK.Core;
-using WLED_SDK.Core.Extensions;
 
-namespace WLED_SDK.Builders.Extensions;
+namespace DevPieter.WLED_SDK.Builders.Extensions;
 
 public static class SegmentExtensions
 {

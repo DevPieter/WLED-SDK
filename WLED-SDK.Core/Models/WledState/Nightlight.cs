@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
-using WLED_SDK.Core.Enums;
+﻿using DevPieter.WLED_SDK.Core.Enums;
+using Newtonsoft.Json;
 
-namespace WLED_SDK.Core.Models.WledState;
+namespace DevPieter.WLED_SDK.Core.Models.WledState;
 
 public class Nightlight
 {
