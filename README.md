@@ -13,7 +13,7 @@ An unofficial .NET Wrapper for the [WLED](https://kno.wled.ge/) [JSON API](https
 
 ## Compatibility
 
-This library is compatible with [WLED v0.14.x](https://github.com/Aircoookie/WLED/releases/tag/v0.14.0) and later.
+This library is compatible with [WLED v0.15.x](https://github.com/Aircoookie/WLED/releases/tag/v0.15.0) and later.
 
 ## Installation
 
