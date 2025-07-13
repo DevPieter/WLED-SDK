@@ -7,6 +7,13 @@
         <Nullable>enable</Nullable>
         <LangVersion>14</LangVersion>
         <AssemblyName>DevPieter.WLED-SDK.Extensions</AssemblyName>
+        <Version>1.0.1</Version>
+        <Title>WLED-SDK</Title>
+        <Authors>DevPieter</Authors>
+        <PackageProjectUrl>https://github.com/DevPieter/WLED-SDK</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/DevPieter/WLED-SDK</RepositoryUrl>
+        <AssemblyVersion>1.0.1</AssemblyVersion>
+        <FileVersion>1.0.1</FileVersion>
     </PropertyGroup>
 
     <ItemGroup>
