@@ -1,6 +1,6 @@
-﻿using WLED_SDK.Core.Models.WledState;
+﻿using DevPieter.WLED_SDK.Core.Models.WledState;
 
-namespace WLED_SDK.Core.WledEventArgs;
+namespace DevPieter.WLED_SDK.Core.WledEventArgs;
 
 public class StateChangedEventArgs : EventArgs
 {

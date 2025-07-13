@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace WLED_SDK.Core.Models.WledInfo;
+namespace DevPieter.WLED_SDK.Core.Models.WledInfo;
 
 public class Info
 {

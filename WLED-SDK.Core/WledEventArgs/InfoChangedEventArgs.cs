@@ -1,6 +1,6 @@
-﻿using WLED_SDK.Core.Models.WledInfo;
+﻿using DevPieter.WLED_SDK.Core.Models.WledInfo;
 
-namespace WLED_SDK.Core.WledEventArgs;
+namespace DevPieter.WLED_SDK.Core.WledEventArgs;
 
 public class InfoChangedEventArgs : EventArgs
 {

@@ -1,7 +1,7 @@
-﻿using WLED_SDK.Builders.Extensions;
-using WLED_SDK.Client.WebSocket;
+﻿using DevPieter.WLED_SDK.Builders.Extensions;
+using DevPieter.WLED_SDK.Client.WebSocket;
+using DevPieter.WLED_SDK.Extensions.State;
 using WLED_SDK.Examples.ConsoleApp;
-using WLED_SDK.Extensions.State;
 
 /* ====== Console Settings (IGNORE) ====== */
 var inputTop = Console.WindowHeight - 2;

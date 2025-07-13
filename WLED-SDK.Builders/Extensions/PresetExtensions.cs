@@ -1,6 +1,6 @@
-﻿using WLED_SDK.Core;
+﻿using DevPieter.WLED_SDK.Core;
 
-namespace WLED_SDK.Builders.Extensions;
+namespace DevPieter.WLED_SDK.Builders.Extensions;
 
 public static class PresetExtensions
 {

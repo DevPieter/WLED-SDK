@@ -1,6 +1,6 @@
-﻿using WLED_SDK.Core;
+﻿using DevPieter.WLED_SDK.Core;
 
-namespace WLED_SDK.Extensions.State;
+namespace DevPieter.WLED_SDK.Extensions.State;
 
 public static class TransitionExtensions
 {

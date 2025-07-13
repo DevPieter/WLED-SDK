@@ -1,10 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
-        <RootNamespace>WLED_SDK.Client.WebSocket</RootNamespace>
+        <TargetFramework>net9.0</TargetFramework>
+        <RootNamespace>DevPieter.WLED_SDK.Client.WebSocket</RootNamespace>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <LangVersion>14</LangVersion>
+        <AssemblyName>DevPieter.WLED-SDK.Client.WebSocket</AssemblyName>
     </PropertyGroup>
 
     <ItemGroup>

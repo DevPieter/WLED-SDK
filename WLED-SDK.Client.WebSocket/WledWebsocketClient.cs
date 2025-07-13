@@ -1,15 +1,15 @@
 ﻿using System.Net.WebSockets;
 using System.Text.Json;
+using DevPieter.WLED_SDK.Core;
+using DevPieter.WLED_SDK.Core.Models.WledInfo;
+using DevPieter.WLED_SDK.Core.Models.WledState;
+using DevPieter.WLED_SDK.Core.WledEventArgs;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Websocket.Client;
-using WLED_SDK.Core;
-using WLED_SDK.Core.Models.WledInfo;
-using WLED_SDK.Core.Models.WledState;
-using WLED_SDK.Core.WledEventArgs;
 
-namespace WLED_SDK.Client.WebSocket;
+namespace DevPieter.WLED_SDK.Client.WebSocket;
 
 public class WledWebsocketClient : IWledClient, IDisposable
 {

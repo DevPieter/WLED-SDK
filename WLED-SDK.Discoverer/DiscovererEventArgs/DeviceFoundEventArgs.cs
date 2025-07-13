@@ -1,6 +1,6 @@
 ﻿using Tmds.MDns;
 
-namespace WLED_SDK.Discoverer.DiscovererEventArgs;
+namespace DevPieter.WLED_SDK.Discoverer.DiscovererEventArgs;
 
 public class WledDeviceFoundEventArgs : EventArgs
 {

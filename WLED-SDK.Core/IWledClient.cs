@@ -1,7 +1,7 @@
-﻿using WLED_SDK.Core.Models.WledInfo;
-using WLED_SDK.Core.Models.WledState;
+﻿using DevPieter.WLED_SDK.Core.Models.WledInfo;
+using DevPieter.WLED_SDK.Core.Models.WledState;
 
-namespace WLED_SDK.Core;
+namespace DevPieter.WLED_SDK.Core;
 
 public interface IWledClient
 {

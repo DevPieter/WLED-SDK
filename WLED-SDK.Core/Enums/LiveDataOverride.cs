@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace WLED_SDK.Core.Enums;
+namespace DevPieter.WLED_SDK.Core.Enums;
 
 public enum LiveDataOverride
 {
