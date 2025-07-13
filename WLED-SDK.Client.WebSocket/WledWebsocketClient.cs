@@ -96,7 +96,8 @@ public class WledWebsocketClient : IWledClient, IDisposable
             var timeoutTask = Task.Delay(_noResponseTimeout, cancellationToken);
 
             await Task.WhenAny(readyTask, timeoutTask);
-            if (!readyTask.IsCompleted) throw new TimeoutException("The client did not receive the info and state of the WLED device in time.");
+            if (!readyTask.IsCompleted)
+                throw new TimeoutException("The client did not receive the info and state of the WLED device in time.");
         }
         catch (Exception e)
         {
@@ -153,11 +154,19 @@ public class WledWebsocketClient : IWledClient, IDisposable
     /// <summary>
     /// Disconnects from the WLED device and disposes the <see cref="WebsocketClient"/>.
     /// </summary>
-    public async void Dispose()
+    public void Dispose()
     {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    private void Dispose(bool disposing)
+    {
+        if (!disposing) return;
+
         try
         {
-            await StopAsync();
+            StopAsync().GetAwaiter().GetResult();
         }
         catch
         {
@@ -177,7 +186,6 @@ public class WledWebsocketClient : IWledClient, IDisposable
 
         if (State is null) OnStateChanged += StateChangedInternal;
         else stateReceivedTask.SetResult(true);
-
 
         await Task.WhenAll(infoReceivedTask.Task, stateReceivedTask.Task);
         return;

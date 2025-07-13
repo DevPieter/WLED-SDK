@@ -2,12 +2,7 @@
 
 namespace DevPieter.WLED_SDK.Discoverer.DiscovererEventArgs;
 
-public class DeviceLostEventArgs : EventArgs
+public class DeviceLostEventArgs(ServiceAnnouncement announcement) : EventArgs
 {
-    public readonly ServiceAnnouncement Announcement;
-
-    public DeviceLostEventArgs(ServiceAnnouncement announcement)
-    {
-        Announcement = announcement;
-    }
+    public readonly ServiceAnnouncement Announcement = announcement;
 }
