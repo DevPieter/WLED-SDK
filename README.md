@@ -7,6 +7,7 @@ An unofficial .NET Wrapper for the [WLED](https://kno.wled.ge/) [JSON API](https
 
 ![Build Status](https://img.shields.io/github/actions/workflow/status/DevPieter/WLED-SDK/nuget-publish.yml?branch=main&label=Build%20Status&logo=github)
 ![License](https://img.shields.io/github/license/DevPieter/WLED-SDK?color=blue&label=License&logo=github)
+![DotNet](https://img.shields.io/badge/.NET-9.0-blue?logo=.net&logoColor=white)
 
 - [Features](#features)
 - [Compatibility](#compatibility)
