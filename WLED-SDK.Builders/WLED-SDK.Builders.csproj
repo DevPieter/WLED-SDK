@@ -5,7 +5,7 @@
         <RootNamespace>DevPieter.WLED_SDK.Builders</RootNamespace>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <LangVersion>14</LangVersion>
+        <LangVersion>13</LangVersion>
         <AssemblyName>DevPieter.WLED-SDK.Builders</AssemblyName>
         <AssemblyVersion>1.0.1</AssemblyVersion>
         <FileVersion>1.0.1</FileVersion>
