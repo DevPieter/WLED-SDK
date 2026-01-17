@@ -2,6 +2,10 @@
 
 namespace WLED_SDK.Examples.ConsoleApp;
 
+/// <summary>
+/// This class contains helper methods to print the state of a WLED device to the console.
+/// It has no relation with the WLED SDK itself, it's just for demonstration purposes.
+/// </summary>
 public static class PrintHelper
 {
     public static void PrintState(State? state, int top, int left, int maxHeight)
@@ -26,7 +30,8 @@ public static class PrintHelper
         foreach (var segment in state.Segments)
         {
             /* Name */
-            Print($"{segment.Id,-1} | {segment.Name ?? "Unnamed"}", newTop, left, segment.Id == state.MainSegmentId ? ConsoleColor.Cyan : ConsoleColor.White);
+            Print($"{segment.Id,-1} | {segment.Name ?? "Unnamed"}", newTop, left,
+                segment.Id == state.MainSegmentId ? ConsoleColor.Cyan : ConsoleColor.White);
 
             newTop++;
             /* State */
@@ -47,7 +52,7 @@ public static class PrintHelper
             /* Brightness */
             Print("  | Brightness:", newTop, left);
             Print($"{segment.Brightness}", newTop, left + 16, ConsoleColor.Blue);
-            
+
             newTop++;
             /* Colors */
             Print("  | Colors:", newTop, left);
