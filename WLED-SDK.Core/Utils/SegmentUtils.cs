@@ -12,8 +12,9 @@ public static class SegmentUtils
     /// <param name="state">The state to get the segment ids from.</param>
     /// <param name="selectedOnly">Whether to only get the ids of the selected segments.</param>
     /// <returns>The ids of the segments in the given state.</returns>
-    public static int[] GetIds(State state, bool selectedOnly = false)
-        => selectedOnly ? state.Segments.Where(segment => segment.Selected).Select(segment => segment.Id).ToArray() : state.Segments.Select(segment => segment.Id).ToArray();
+    public static int[] GetIds(State state, bool selectedOnly = false) => selectedOnly
+        ? state.Segments.Where(segment => segment.Selected).Select(segment => segment.Id).ToArray()
+        : state.Segments.Select(segment => segment.Id).ToArray();
 
     /// <summary>
     /// Clamps the given segments to the existing segments in the state.
@@ -27,7 +28,7 @@ public static class SegmentUtils
     /// <returns>The clamped existing non-duplicate segments.</returns>
     public static int[] ClampIds(State state, params int[]? segmentsIds)
     {
-        if (segmentsIds is null || !segmentsIds.Any()) return GetIds(state);
+        if (segmentsIds is null || segmentsIds.Length is 0) return GetIds(state);
 
         var result = new List<int>();
         var existing = GetIds(state);

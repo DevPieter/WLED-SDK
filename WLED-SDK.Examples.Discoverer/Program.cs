@@ -1,16 +1,16 @@
-﻿/*
- * This example shows how to use the WLED SDK to discover WLED devices on the network.
- *
- * We will use the WledDeviceDiscoverer to discover WLED devices on the network.
- * When a device is found, we will connect to it using the WledWebsocketClient and toggle its state on and off.
- */
-
-/* ====== Console Settings (IGNORE) ====== */
-
-using DevPieter.WLED_SDK.Client.WebSocket;
+﻿using DevPieter.WLED_SDK.Client.WebSocket;
 using DevPieter.WLED_SDK.Discoverer;
 using DevPieter.WLED_SDK.Extensions.State;
 
+/*
+ * This is a simple console application that demonstrates the WLED device discoverer
+ * functionality of WLED SDK.
+ *
+ * It searches for WLED devices on the local network and connects to them when found.
+ * It then blinks the device once to show that it has connected successfully.
+ */
+
+/* ====== Console Settings (IGNORE) ====== */
 Console.Clear();
 Console.Title = "WLED SDK - Discoverer Example";
 /* ======================================= */
@@ -22,7 +22,13 @@ using var wledDiscoverer = new WledDeviceDiscoverer();
 wledDiscoverer.OnDeviceFound += async (_, eventArgs) =>
 {
     // Get the IP address of the found device.
-    var ip = eventArgs.Announcement.Addresses.First().ToString();
+    var ip = eventArgs.FirstIpAddress();
+    
+    if (ip is null)
+    {
+        Console.WriteLine("Found WLED device without an IP address! Skipping...");
+        return;
+    }
 
     Console.WriteLine($"New WLED device found at {ip}! Trying to connect...");
 

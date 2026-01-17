@@ -9,7 +9,7 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <AssemblyVersion>1.0.1</AssemblyVersion>
         <FileVersion>1.0.1</FileVersion>
-        <LangVersion>14</LangVersion>
+        <LangVersion>13</LangVersion>
         <AssemblyName>DevPieter.WLED-SDK.Core</AssemblyName>
         <Version>1.0.1</Version>
         <Title>WLED-SDK</Title>

@@ -4,6 +4,6 @@ namespace DevPieter.WLED_SDK.Core.WledEventArgs;
 
 public class StateChangedEventArgs(State? previousState, State? state) : EventArgs
 {
-    public readonly State? PreviousState = previousState;
-    public readonly State? State = state;
+    public State? PreviousState { get; } = previousState;
+    public State? State { get; } = state;
 }

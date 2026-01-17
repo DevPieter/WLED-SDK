@@ -4,6 +4,6 @@ namespace DevPieter.WLED_SDK.Core.WledEventArgs;
 
 public class InfoChangedEventArgs(Info? previousInfo, Info? info) : EventArgs
 {
-    public readonly Info? PreviousInfo = previousInfo;
-    public readonly Info? Info = info;
+    public Info? PreviousInfo { get; } = previousInfo;
+    public Info? Info { get; } = info;
 }

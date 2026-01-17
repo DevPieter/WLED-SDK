@@ -7,7 +7,7 @@
         <Nullable>enable</Nullable>
         <Authors>DevPieter</Authors>
         <RootNamespace>WLED_SDK.Examples.ConsoleApp</RootNamespace>
-        <LangVersion>14</LangVersion>
+        <LangVersion>13</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
