@@ -16,6 +16,8 @@ public class WledWebsocketClient : IWledClient, IDisposable
     private readonly WebsocketClient _client;
     private readonly ILogger<WledWebsocketClient>? _logger;
     private readonly TimeSpan _noResponseTimeout = TimeSpan.FromSeconds(5);
+    private readonly SemaphoreSlim _sendLock = new(1, 1);
+    private TaskCompletionSource? _pendingResponse;
 
     /// <summary>
     /// The URI of the WLED device.
@@ -129,20 +131,30 @@ public class WledWebsocketClient : IWledClient, IDisposable
     public async Task SendJsonAsync<T>(T message)
     {
         if (message is null) throw new ArgumentNullException(nameof(message));
-        if (!IsConnected) throw new InvalidOperationException("Client is not connected.");
+        await _sendLock.WaitAsync();
 
-        await Task.Run(() =>
+        try
         {
+            if (!IsConnected) throw new InvalidOperationException("Client is not connected.");
             var jsonObject = JObject.FromObject(message);
 
             // Inject the custom transition time if it's not -1
             if (ClientTransitionTime is not -1) jsonObject.Add("tt", Math.Clamp(ClientTransitionTime, 0, 65535));
 
             var json = jsonObject.ToString(Formatting.None);
+            var response = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+            _pendingResponse = response;
 
             _logger?.LogDebug("Sending JSON message to {Uri}: {Message}", Uri, json);
             _client.Send(json);
-        });
+
+            await response.Task.WaitAsync(_noResponseTimeout);
+        }
+        finally
+        {
+            _pendingResponse = null;
+            _sendLock.Release();
+        }
     }
 
     /// <summary>
@@ -209,31 +221,49 @@ public class WledWebsocketClient : IWledClient, IDisposable
 
         try
         {
-            /* Try to parse the JSON message into a Info object. */
-            var jsonInfo = JsonDocument.Parse(msg.Text).RootElement.GetProperty("info");
-            var info = JsonConvert.DeserializeObject<Info>(jsonInfo.ToString());
-            if (info is not null) UpdateInfoFromMessage(info);
-        }
-        catch
-        {
-            // Ignored
-        }
+            using var document = JsonDocument.Parse(msg.Text);
+            var root = document.RootElement;
+            var responseReceived = false;
 
-        try
-        {
-            /* Try to parse the JSON message into a State object. */
-            var jsonState = JsonDocument.Parse(msg.Text).RootElement.GetProperty("state");
-            var state = JsonConvert.DeserializeObject<State>(jsonState.ToString());
-            if (state is not null) UpdateStateFromMessage(state);
+            if (root.TryGetProperty("info", out var jsonInfo))
+            {
+                var info = JsonConvert.DeserializeObject<Info>(jsonInfo.ToString());
+                if (info is not null) UpdateInfoFromMessage(info);
+                responseReceived = true;
+            }
+
+            if (root.TryGetProperty("state", out var jsonState))
+            {
+                var state = JsonConvert.DeserializeObject<State>(jsonState.ToString());
+                if (state is not null) UpdateStateFromMessage(state);
+                responseReceived = true;
+            }
+
+            if (root.TryGetProperty("error", out var jsonError))
+            {
+                var errorCode = jsonError.ValueKind is JsonValueKind.Number && jsonError.TryGetInt32(out var code) ? code : (int?)null;
+                _pendingResponse?.TrySetException(new WledWebsocketException(errorCode, jsonError.ToString()));
+                return;
+            }
+
+            if (root.TryGetProperty("success", out var jsonSuccess))
+            {
+                if (jsonSuccess.ValueKind is JsonValueKind.True) responseReceived = true;
+                else _pendingResponse?.TrySetException(new WledWebsocketException(null, "WLED reported that the command was unsuccessful."));
+            }
+
+            if (responseReceived) _pendingResponse?.TrySetResult();
         }
-        catch
+        catch (Exception e) when (e is System.Text.Json.JsonException or Newtonsoft.Json.JsonException)
         {
-            // Ignored
+            _logger?.LogWarning(e, "Received invalid JSON from {Uri}: {Message}", Uri, msg.Text);
         }
     }
 
     private void OnDisconnectionHappened(DisconnectionInfo info)
     {
+        _pendingResponse?.TrySetException(new WebSocketException("The WLED device disconnected before acknowledging the command."));
+
         UpdateInfoFromMessage(null);
         UpdateStateFromMessage(null);
 

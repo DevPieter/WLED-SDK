@@ -91,6 +91,19 @@ public class Info
     [JsonProperty("cpalcount")]
     public int CustomPaletteCount { get; private set; } // TODO - Check if correct naming
 
+    /// <summary>
+    /// Maximum number of custom palettes supported by the device.
+    /// Null on WLED versions before 0.16.0.
+    /// </summary>
+    [JsonProperty("cpalmax")]
+    public int? MaxCustomPaletteCount { get; private set; }
+
+    /// <summary>
+    /// Number of palettes registered by usermods.
+    /// </summary>
+    [JsonProperty("umpalcount")]
+    public int UsermodPaletteCount { get; private set; }
+
     // /// <summary>
     // /// TODO - Not found in docs.
     // /// <remarks>Not found in the docs.</remarks>

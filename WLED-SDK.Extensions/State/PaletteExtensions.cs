@@ -7,13 +7,19 @@ namespace DevPieter.WLED_SDK.Extensions.State;
 public static class PaletteExtensions
 {
     public static bool IsValidPaletteId(this IWledClient client, int paletteId)
-        => paletteId >= 0 && paletteId <= client.GetInfoOrThrow().PaletteCount - 1;
+        => GetValidPaletteIds(client).Contains(paletteId);
 
     public static int ClampPaletteId(this IWledClient client, int paletteId)
-        => Math.Clamp(paletteId, 0, client.GetInfoOrThrow().PaletteCount - 1);
+    {
+        var paletteIds = GetValidPaletteIds(client);
+        return paletteIds.MinBy(validId => Math.Abs((long)validId - paletteId));
+    }
 
     public static int GetRandomPaletteId(this IWledClient client)
-        => Random.Shared.Next(0, client.GetInfoOrThrow().PaletteCount - 1);
+    {
+        var paletteIds = GetValidPaletteIds(client);
+        return paletteIds[Random.Shared.Next(paletteIds.Length)];
+    }
 
     public static async Task SetPaletteAsync(this IWledClient client, int paletteId, params int[]? segmentsIds)
     {
@@ -31,5 +37,37 @@ public static class PaletteExtensions
     {
         var segments = SegmentUtils.ClampIds(client.GetStateOrThrow(), segmentsIds);
         await client.SendJsonAsync(SegmentUtils.CreateSegmentsWith(new { pal = $"{(forward ? "~" : "~-")}{steps}" }, segments));
+    }
+
+    private static int[] GetValidPaletteIds(IWledClient client)
+    {
+        var info = client.GetInfoOrThrow();
+
+        var customPaletteCount = Math.Max(0, info.CustomPaletteCount);
+        var usermodPaletteCount = Math.Max(0, info.UsermodPaletteCount);
+        var builtInPaletteCount = Math.Max(0, info.PaletteCount - customPaletteCount - usermodPaletteCount);
+
+        var paletteIds = Enumerable.Range(0, builtInPaletteCount).ToList();
+
+        if (info.MaxCustomPaletteCount.HasValue)
+        {
+            AddDescendingRange(paletteIds, 200, customPaletteCount);
+            AddDescendingRange(paletteIds, 255, usermodPaletteCount);
+        }
+        else
+        {
+            AddDescendingRange(paletteIds, 255, customPaletteCount);
+        }
+
+        if (paletteIds.Count is 0) throw new InvalidOperationException("The WLED device did not report any available palettes.");
+        return paletteIds.ToArray();
+    }
+
+    private static void AddDescendingRange(List<int> paletteIds, int firstId, int count)
+    {
+        for (var offset = 0; offset < count; offset++)
+        {
+            paletteIds.Add(firstId - offset);
+        }
     }
 }

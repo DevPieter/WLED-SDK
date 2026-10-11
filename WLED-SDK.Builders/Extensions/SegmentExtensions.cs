@@ -27,7 +27,7 @@ public static class SegmentExtensions
             builder.AddSegment(0, 0, id: i);
         }
 
-        await client.SetSegmentsAsync(builder, true);
+        await client.SetSegmentsAsync(builder);
     }
 
     /// <summary>
